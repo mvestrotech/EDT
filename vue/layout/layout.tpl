@@ -5,11 +5,12 @@
 
 <!doctype html>
 <html><head>
-  <meta charset="utf-8">
-  <title>Test mvc  <?php  echo ($action); ?> </title>
-  <link rel="stylesheet" href="./vue/styleCSS/style.css"/>
+    <meta charset="utf-8">
+    <title>Test mvc  <?php  echo ($action); ?> </title>
+    <link rel="stylesheet" href="./vue/styleCSS/style.css"/>
+    <link rel="stylesheet" href="./vue/styleCSS/bootstrap.css"/>
 
-   </head>
+    </head>
 
 <body>
 
