@@ -9,6 +9,7 @@
     <title>Test mvc  <?php  echo ($action); ?> </title>
     <link rel="stylesheet" href="./vue/styleCSS/style.css"/>
     <link rel="stylesheet" href="./vue/styleCSS/bootstrap.css"/>
+    <link rel="stylesheet" href="./vue/styleCSS/normalize.css"/>
 
     </head>
 
