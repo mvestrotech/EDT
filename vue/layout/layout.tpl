@@ -16,12 +16,16 @@
 <body>
 
 	<nav>
-		<?php  require ("./vue/layout/menu.tpl"); ?>	
+		<?php  require ("./vue/layout/menu.tpl"); ?>
 	</nav>
 
-	<div id ="main"> 
+	<div id ="main">
 		<h2> Vue </h2>
-		<?php  require ("./vue/" . $controle . "/" . $action . ".tpl"); ?>  
+		<?php  require ("./vue/" . $controle . "/" . $action . ".tpl"); ?>
 	</div>
+
+    <div class="col">
+        <?php  require ("./vue/layout/edt.tpl"); ?>
+    </div>
 
 </body></html>

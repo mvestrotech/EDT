@@ -8,7 +8,7 @@
 		<li>
 		<a href='index.php?controle=c1&action=a12' title='action a12 du controleur c1'>
 			service 12 (c1)  </a></li>
-		
+
 		<li>
 		<a href='index.php?controle=c2&action=a21' title='action a21 du controleur c2'>
 			service 21 (c2) </a></li>
