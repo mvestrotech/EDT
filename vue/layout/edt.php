@@ -21,15 +21,21 @@
 <script>
     var timetable = new Timetable();
 
-    timetable.setScope(9,17)
+    timetable.setScope(0,23)
+</script>
 
-    timetable.addLocations(['M11', 'M12']);
+<?php
+while ($matiere = $matieres->fetch()) {
+    ?>
+    <script>
+        timetable.addLocations(['<?php echo $matiere['nom']; ?>']);
 
-    timetable.addEvent('Zumba', 'M11', new Date(2015,7,17,12), new Date(2015,7,17,13), { url: '#' });
-    timetable.addEvent('Lunch', 'M12', new Date(2015,7,17,9,30), new Date(2015,7,17,11,45), { onClick: function(event) {
-            window.alert('You clicked on the ' + event.name + ' event in ' + event.location + '. This is an example of a click handler');
-        }});
-
+        //timetable.addEvent('Sightseeing', '<?php echo $matiere['nom']; ?>', new Date(2015, 7, 17, 9, 00), new Date(2015, 7, 17, 11, 30), {url: '#'});
+    </script>
+    <?php
+}
+?>
+<script>
     var renderer = new Timetable.Renderer(timetable);
     renderer.draw('.timetable');
 </script>
@@ -43,5 +49,14 @@
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-37417680-5');ga('send','pageview');
 </script>
+
+<div class="col">
+    <?php
+    ini_set('display_errors', 1);
+    while ($periode = $periodes->fetch()) {
+        echo "<p>" . date("d/m/y G:i:s", $periode['tDeb']) . " - " . date("d/m/y G:i:s",$periode['tFin']) . "</p>";
+    }
+    ?>
+</div>
 </body>
 </html>

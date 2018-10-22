@@ -25,7 +25,7 @@
 	</div>
 
     <div class="col">
-        <?php  require ("./vue/layout/edt.tpl"); ?>
+        <?php  require ("./vue/layout/edt.php"); ?>
     </div>
 
 </body></html>
