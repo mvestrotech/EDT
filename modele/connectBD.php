@@ -1,10 +1,10 @@
 <?php
 function dbConnect()
 {
-    $hostname = "localhost";	//ou localhost
-    $base= "proj";
-    $loginBD= "root";	//ou "root"
-    $passBD="root";
+    $hostname = "vs-wamp";	//ou localhost
+    $base= "pweb18_";
+    $loginBD= "econtact";	//ou "root"
+    $passBD="econtact";
 
     try
     {
