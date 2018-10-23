@@ -11,7 +11,8 @@ function a11() {
     require("././modele/Periode.php");
     $matieres = getAllMatiere();
     $periodes = getAllPeriode();
-	require ("./vue/layout/layout.tpl"); //layout lançant le template de vue du service
+    require ("./vue/layout/layout.tpl"); //layout lançant le template de vue du service
+    require("./vue/layout/edt.tpl");
 }
 
 function a12() {

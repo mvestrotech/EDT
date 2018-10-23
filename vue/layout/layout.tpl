@@ -24,8 +24,4 @@
 		<?php  require ("./vue/" . $controle . "/" . $action . ".tpl"); ?>
 	</div>
 
-    <div class="col">
-        <?php  require ("./vue/layout/edt.tpl"); ?>
-    </div>
-
 </body></html>
