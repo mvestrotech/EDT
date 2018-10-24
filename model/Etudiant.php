@@ -1,5 +1,5 @@
 <?php
-
+require 'model/connectDb.php';
 class Etudiant extends connectDB
 {
 

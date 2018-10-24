@@ -1,5 +1,5 @@
 <?php
-
+require 'model/connectDb.php';
 class Formation extends connectDb {
 
     private $id_form;

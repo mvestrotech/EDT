@@ -1,5 +1,5 @@
 <?php
-
+require 'model/connectDb.php';
 class Prof extends connectDb {
 
     private $id_prof;

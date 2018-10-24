@@ -1,5 +1,5 @@
 <?php
-
+require 'model/connectDb.php';
   class Module extends connectDB{
     private $id_uemod;
     private $id_form;

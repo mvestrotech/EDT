@@ -1,5 +1,5 @@
 <?php
-
+require 'model/connectDb.php';
 class Matiere extends connectDb {
 
     private $id_mat;

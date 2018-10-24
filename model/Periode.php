@@ -1,5 +1,5 @@
 <?php
-
+require 'model/connectDb.php';
   class Periode extends connectDb{
     private $id_period;
     private $id_promo;

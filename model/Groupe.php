@@ -1,5 +1,5 @@
 <?php
-
+require 'model/connectDb.php';
 class Groupe extends connectDb {
 
     private $id_grpe;
