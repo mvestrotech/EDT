@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Test mvc  <?php  echo ($action); ?> </title>
-	<link rel="stylesheet" type="text/css" href="/vue/styleCSS/style.css"/>
-	<link rel="stylesheet" type="text/css" href="/vue/styleCSS/bootstrap.css"/>
-	<link rel="stylesheet" type="text/css" href="/vue/styleCSS/normalize.css"/>
+	<title>Test mvc</title>
+	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/style.css"/>
+	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/normalize.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
@@ -17,6 +17,7 @@
 	<h1 class="text-center">Grille d'EDT modules/périodes</h1>
 
 	<div class="zone" id="btns">
+		<button class="btn" id="start">Commencer l'EDT</button>
 		<button class="btn" id="edt">sélection d'un edt</button>
 		<button class="btn" id="matiere">créer une matière dans l'edt</button>
 		<button class="btn" id="calculer">calculer les heures</button>
@@ -54,8 +55,8 @@
 			<div class="cellules total silver"><b>total par module</b></div>
 		</div>
 		<!-- Premiere ligne -->
-		<div class="row edt">
-			<div class="cellules titre droppable silver"></div>
+		<!-- <div class="row edt" id="row">
+			<div class="cellules titre droppable silver" id="module"></div>
 			<div class="cellules droppable silver"><p class=''>1-1</p></div>
 			<div class="cellules droppable silver"><p class=''>1-2</p></div>
 			<div class="cellules droppable silver"><p class=''>1-3</p></div>
@@ -63,7 +64,7 @@
 			<div class="cellules droppable silver"><p class=''>1-5</p></div>
 			<div class="cellules droppable silver"><p class=''>1-6</p></div>
 			<div class="cellules total silver"><p class='tot'>-</p></div>
-		</div>
+		</div> -->
 		<!-- <div class="row edt">
             <div class="cellules titre draggable purple">
                     <p class='mod'>M12</p><p class='pos'>2</p></div>
@@ -92,20 +93,24 @@
 </body>
 <!-- JQUERY -->
 <script>
-    $( ".titre" ).click(function() {
+
+    $( "#start" ).click(function() {
         //Fonction Ajax
-        $.ajax({
-            url : 'localhost/edt/ModuleControlleur/index',
-            type : 'GET',
-            data : 'id='+id,
-            success : function(code_html, statut){
-                alert("A Malibu");
-            },
-            error : function(resultat, statut, erreur){
-            },
-            complete : function(resultat, statut){
-            }
-        });
+		$.get("http://localhost/edt/index.php?controle=ModuleController&action=index", function(data, status){
+				var obj = JSON.parse(data);
+				for (var o in obj){
+					var item = obj[o];
+					$('<div class="row edt">'+
+					'<div class="cellules titre droppable silver" id='+item.id+'>'+item.nom+'</div>'+
+					'<div class="cellules droppable silver"><p class="">1-1</p></div>'+
+					'<div class="cellules droppable silver"><p class="">1-2</p></div>'+
+					'<div class="cellules droppable silver"><p class="">1-3</p></div>'+
+					'<div class="cellules droppable silver"><p class="">1-4</p></div>'+
+					'<div class="cellules droppable silver"><p class="">1-5</p></div>'+
+					'<div class="cellules droppable silver"><p class="">1-6</p></div>'+
+					'<div class="cellules droppable silver"><p class="tot">-</p></div>').insertAfter($('#H'));
+				}
     });
+		});
 </script>
 </html>
