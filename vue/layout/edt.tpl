@@ -1,4 +1,12 @@
 <body>
+<head>
+    <meta charset="utf-8">
+    <title>Test mvc  <?php  echo ($action); ?> </title>
+    <link rel="stylesheet" href="./vue/styleCSS/style.css"/>
+    <link rel="stylesheet" href="./vue/styleCSS/bootstrap.css"/>
+    <link rel="stylesheet" href="./vue/styleCSS/normalize.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
 <div class="container">
 <h1 class="text-center">Grille d'EDT modules/périodes</h1>
 

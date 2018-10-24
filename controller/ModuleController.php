@@ -5,10 +5,7 @@ class ModuleController{
   //Retourne tous les modules
   public function index(){
     $modules = Module::getAllModule();
-    var_dump($modules->fetch());
-    while ($module = $modules->fetch()){
-      echo $module['nom'] . "</br>";
-    }
+    require 'vue/layout/edt.tpl';
     
   }
 }

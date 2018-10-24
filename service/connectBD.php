@@ -10,7 +10,7 @@ require(dbResources.php);
     {
         $hostname = "localhost";
         $base= "proj";
-        $loginBD= "proj";
+        $loginBD= "root";
         $passBD="root";
 
         try
