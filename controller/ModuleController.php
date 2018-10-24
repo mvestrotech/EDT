@@ -1,12 +1,15 @@
 <?php 
-require("../modele/Module.php");
+require("./model/Module.php");
 class ModuleController{
   
   //Retourne tous les modules
   public function index(){
-    $service = new ModuleService();
-    $modules = $service->getAllModule();
-    return json_encode($modules);
+    $modules = Module::getAllModule();
+    var_dump($modules->fetch());
+    while ($module = $modules->fetch()){
+      echo $module['nom'] . "</br>";
+    }
+    
   }
 }
 ?>
