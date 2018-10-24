@@ -2,11 +2,27 @@
 
 require_once('connectBD.php');
 
-function getAllFormation()
-{
-    $db = dbConnect();
-    $formation = $db->prepare('SELECT * FROM `formation`');
-    $formation->execute();
+class Formation extends connectDb {
 
-    return $formation;
+    private $id_form;
+    private $nom;
+    private $label;
+
+
+    public function __construct($id_form, $nom, $label)
+    {
+        $this->id_form = $id_form;
+        $this->nom = $nom;
+        $this->label = $label;
+    }
+
+
+    function getAllFormation()
+    {
+        $db = dbConnect();
+        $formation = $db->prepare('SELECT * FROM `formation`');
+        $formation->execute();
+
+        return $formation;
+    }
 }
