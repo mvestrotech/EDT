@@ -1,12 +1,18 @@
 <?php
+require 'model/connectDb.php';
+class Groupe extends connectDb {
 
-require_once('connectBD.php');
+    private $id_grpe;
+    private $id_promo;
+    private $type_grpe;
+    private $num_grpe;
 
-function getAllGroupe()
-{
-    $db = dbConnect();
-    $groupe = $db->prepare('SELECT * FROM `groupe`');
-    $groupe->execute();
+    public static function getAllGroupes()
+    {
+        $db = connectDb::dbConnect();
+        $groupes = $db->prepare('SELECT * FROM `groupe`');
+        $groupes->execute();
 
-    return $groupe;
+        return $groupes;
+    }
 }

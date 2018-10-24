@@ -1,5 +1,5 @@
-﻿<?php 
-
+﻿<?php
+ini_set('display_errors', 1);
 //hypothèse 2 paramètres d'entrée, controle et action, avec l'url de index.php
 // exmple : index.php?controle=c1&action=a12
 
@@ -8,13 +8,14 @@ if (isset($_GET['controle']) & isset($_GET['action'])) {
 	$action= $_GET['action'];
 	}
 else { //absence de paramètres : prévoir des valeurs par défaut
-	$controle = "c1";
-	$action= "a11";
+	$controle = "ModuleController";
+	require ('./controller/' . $controle . '.php');	
+	$cont = new ModuleController();
+	$action= "index";
 	}
 	
 //inclure le fichier php de contrôle 
 //et lancer la fonction-action issue de ce fichier.
-	require ('./controller/' . $controle . '.php');
-	$action (); 
 
+	$cont->{$action}(); 
 ?>

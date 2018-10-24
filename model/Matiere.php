@@ -1,12 +1,24 @@
 <?php
+require 'model/connectDb.php';
+class Matiere extends connectDb {
 
-require_once('connectBD.php');
+    private $id_mat;
+    private $id_ue;
+    private $id_mod;
+    private $id_period;
+    private $nom;
+    private $label;
+    private $nbH;
+    private $couleur;
+    private $themes;
+    private $typeEns;
 
-function getAllMatiere()
-{
-    $db = dbConnect();
-    $matiere = $db->prepare('SELECT * FROM `matiere`');
-    $matiere->execute();
+    public static function getAllMatieres()
+    {
+        $db = connectDb::dbConnect();
+        $matieres = $db->prepare('SELECT * FROM `matiere`');
+        $matieres->execute();
 
-    return $matiere;
+        return $matieres;
+    }
 }

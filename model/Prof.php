@@ -1,12 +1,26 @@
 <?php
+require 'model/connectDb.php';
+class Prof extends connectDb {
 
-require_once('connectBD.php');
+    private $id_prof;
+    private $genre;
+    private $nom;
+    private $prenom;
+    private $email;
+    private $label;
+    private $login_prof;
+    private $pass_prof;
+    private $date_prof;
+    private $urlPhoto;
+    private $couleur;
+    private $bConnect;
 
-function getAllProf()
-{
-    $db = dbConnect();
-    $prof = $db->prepare('SELECT * FROM `prof`');
-    $prof->execute();
+    public static function getAllProfs()
+    {
+        $db = connectDb::dbConnect();
+        $profs = $db->prepare('SELECT * FROM `prof`');
+        $profs->execute();
 
-    return $prof;
+        return $profs;
+    }
 }

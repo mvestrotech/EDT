@@ -1,12 +1,17 @@
 <?php
+require 'model/connectDb.php';
+class Formation extends connectDb {
 
-require_once('connectBD.php');
+    private $id_form;
+    private $nom;
+    private $label;
 
-function getAllFormation()
-{
-    $db = dbConnect();
-    $formation = $db->prepare('SELECT * FROM `formation`');
-    $formation->execute();
+    public static function getAllFormations()
+    {
+        $db = connectDb::dbConnect();
+        $formations = $db->prepare('SELECT * FROM `formation`');
+        $formations->execute();
 
-    return $formation;
+        return $formations;
+    }
 }

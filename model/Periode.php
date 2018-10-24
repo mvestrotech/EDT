@@ -1,21 +1,26 @@
 <?php
+require 'model/connectDb.php';
+  class Periode extends connectDb{
+    private $id_period;
+    private $id_promo;
+    private $label;
+    private $tDeb;
+    private $tFin;
 
-require_once('connectBD.php');
+    public static function getAllPeriodes()
+    {
+      $db = connectDb::dbConnect();
+      $periodes = $db->prepare('SELECT * FROM `period`');
+      $periodes->execute();
+      return $periodes;
+    }
 
-function getAllPeriode()
-{
-    $db = dbConnect();
-    $periode = $db->prepare('SELECT * FROM `period`');
-    $periode->execute();
-
-    return $periode;
-}
-
-function getAllPeriodePromo()
-{
-    $db = dbConnect();
-    $periode = $db->prepare('SELECT period.id_period, promotion.id_promo, period.label as "label_period", period.tDeb, period.tFin, promotion.label as "label_promo" FROM `period` INNER JOIN promotion ON promotion.id_promo = period.id_promo');
-    $periode->execute();
-
-    return $periode;
-}
+    public static function getAllPeriodePromos()
+    {
+      $db = connectDb::dbConnect();
+      $periodes = $db->prepare('SELECT period.id_period, promotion.id_promo, period.label as "label_period", period.tDeb, period.tFin, promotion.label as "label_promo" FROM `period` INNER JOIN promotion ON promotion.id_promo = period.id_promo');
+      $periodes->execute();
+      return $periodes;
+    }
+  }
+?>
