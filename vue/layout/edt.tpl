@@ -91,7 +91,7 @@
 $( ".titre" ).click(function() {
 	//Fonction Ajax
 	$.ajax({
-		url : '/Module/action',
+		url : 'localhost/edt/ModuleControlleur/index',
 		type : 'GET',
 		data : 'id='+id,
 		success : function(code_html, statut){
