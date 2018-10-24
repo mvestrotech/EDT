@@ -2,7 +2,7 @@
 /*controleur c1.php :
   fonctions-action de gestion (c1)
 */
-
+ini_set('display_errors', 1);
 function a11() {
 	//require ("./modele/m1.php");	//accès aux fcts modèle de m1.php
     ini_set('display_errors', 1);
