@@ -37,32 +37,32 @@
 		<div class="cellules titre lime">mars (2sem)</div>
 		<div class="cellules titre lime">mai(3sem)</div>
 		<div class="cellules titre lime">juin-juillet(3sem)</div>
-		<div class="cellules total silver">total par module</div>
+		<div class="cellules total silver"><b>total par module</b></div>
 	</div>
+	<!-- Premiere ligne -->
 	<div class="row edt">
-		<div class="cellules titre draggable blue">
-				<p class='mod'>M11</p><p class='pos'>1</p></div>
-		<div class="cellules droppable silver"><p class='pos'>1-1</p></div>
-		<div class="cellules droppable silver"><p class='pos'>1-2</p></div>
-		<div class="cellules droppable silver"><p class='pos'>1-3</p></div>
-		<div class="cellules droppable silver"><p class='pos'>1-4</p></div>
-		<div class="cellules droppable silver"><p class='pos'>1-5</p></div>
-		<div class="cellules droppable silver"><p class='pos'>1-6</p></div>
+		<div class="cellules titre droppable silver"></div>
+		<div class="cellules droppable silver"><p class=''>1-1</p></div>
+		<div class="cellules droppable silver"><p class=''>1-2</p></div>
+		<div class="cellules droppable silver"><p class=''>1-3</p></div>
+		<div class="cellules droppable silver"><p class=''>1-4</p></div>
+		<div class="cellules droppable silver"><p class=''>1-5</p></div>
+		<div class="cellules droppable silver"><p class=''>1-6</p></div>
 		<div class="cellules total silver"><p class='tot'>-</p></div>
 	</div>
-	<div class="row edt">
+	<!-- <div class="row edt">
 		<div class="cellules titre draggable purple">
 				<p class='mod'>M12</p><p class='pos'>2</p></div>
-		<div class="cellules droppable silver"><p class='pos'>2-1</p></div>
-		<div class="cellules droppable silver"><p class='pos'>2-2</p></div>
-		<div class="cellules droppable silver"><p class='pos'>2-3</p></div>
-		<div class="cellules droppable silver"><p class='pos'>2-4</p></div>
-		<div class="cellules droppable silver"><p class='pos'>2-5</p></div>
-		<div class="cellules droppable silver"><p class='pos'>2-6</p></div>
+		<div class="cellules droppable silver"><p class=''>2-1</p></div>
+		<div class="cellules droppable silver"><p class=''>2-2</p></div>
+		<div class="cellules droppable silver"><p class=''>2-3</p></div>
+		<div class="cellules droppable silver"><p class=''>2-4</p></div>
+		<div class="cellules droppable silver"><p class=''>2-5</p></div>
+		<div class="cellules droppable silver"><p class=''>2-6</p></div>
 		<div class="cellules total silver"><p class='tot'>-</p></div>
-	</div>
+	</div> -->
 	<div class="row cptV">
-		<div class="cellules silver"><p>total/période</p></div>
+		<div class="cellules silver"><p><b>total/période</b></p></div>
 		<div class="cellules total silver"><p class='tot'>-</p></div>
 		<div class="cellules total silver"><p class='tot'>-</p></div>
 		<div class="cellules total silver"><p class='tot'>-</p></div>
@@ -75,6 +75,25 @@
 
 
 </div>  <!-- fin container -->
-</div>
+
 </body>
+
+<!-- JQUERY -->
+<script>
+$( ".titre" ).click(function() {
+	//Fonction Ajax
+	$.ajax({
+		url : '/Module/action',
+		type : 'GET',
+		data : 'id='+id,
+		success : function(code_html, statut){
+			alert("A Malibu");
+		},
+		error : function(resultat, statut, erreur){
+		},
+		complete : function(resultat, statut){
+		}
+	});
+});
+</script>
 </html>
