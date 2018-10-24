@@ -5,7 +5,7 @@ class ModuleController{
   //Retourne tous les modules
   public function index(){
     $service = new ModuleService();
-    $modules = $service->getAll();
+    $modules = $service->getAllModule();
     return json_encode($modules);
   }
 }
