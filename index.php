@@ -1,5 +1,5 @@
-﻿<?php 
-
+﻿<?php
+ini_set('display_errors', 1);
 //hypothèse 2 paramètres d'entrée, controle et action, avec l'url de index.php
 // exmple : index.php?controle=c1&action=a12
 

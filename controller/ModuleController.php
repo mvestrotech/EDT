@@ -1,6 +1,6 @@
 <?php 
 require("./model/Module.php");
-class ModuleController{
+class ModuleController {
   
   //Retourne tous les modules
   public function index(){
