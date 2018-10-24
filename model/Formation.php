@@ -1,7 +1,5 @@
 <?php
 
-require_once('connectBD.php');
-
 class Formation extends connectDb {
 
     private $id_form;
@@ -19,10 +17,10 @@ class Formation extends connectDb {
 
     function getAllFormation()
     {
-        $db = dbConnect();
-        $formation = $db->prepare('SELECT * FROM `formation`');
-        $formation->execute();
+        $db = connectDb::dbConnect();
+        $formations = $db->prepare('SELECT * FROM `formation`');
+        $formations->execute();
 
-        return $formation;
+        return $formations;
     }
 }

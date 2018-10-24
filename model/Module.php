@@ -1,5 +1,5 @@
-<?php 
-  require_once('connectDb.php');
+<?php
+
   class Module extends connectDB{
     private $id_uemod;
     private $id_form;
@@ -7,14 +7,6 @@
     private $nom;
     private $label;
 
-      /**
-       * Module constructor.
-       * @param $id_uemod
-       * @param $id_form
-       * @param $classif
-       * @param $nom
-       * @param $label
-       */
       public function __construct($id_uemod, $id_form, $classif, $nom, $label)
       {
           $this->id_uemod = $id_uemod;

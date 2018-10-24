@@ -1,8 +1,5 @@
 <?php
 
-require_once('connectBD.php');
-
-
 class Prof extends connectDb {
 
     private $id_prof;
@@ -36,10 +33,10 @@ class Prof extends connectDb {
 
     function getAllProf()
     {
-        $db = dbConnect();
-        $prof = $db->prepare('SELECT * FROM `prof`');
-        $prof->execute();
+        $db = connectDb::dbConnect();
+        $profs = $db->prepare('SELECT * FROM `prof`');
+        $profs->execute();
 
-        return $prof;
+        return $profs;
     }
 }

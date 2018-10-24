@@ -1,7 +1,5 @@
 <?php
 
-require_once('connectBD.php');
-
 class Groupe extends connectDb {
 
     private $id_grpe;
@@ -20,10 +18,10 @@ class Groupe extends connectDb {
 
     function getAllGroupe()
     {
-        $db = dbConnect();
-        $groupe = $db->prepare('SELECT * FROM `groupe`');
-        $groupe->execute();
+        $db = connectDb::dbConnect();
+        $groupes = $db->prepare('SELECT * FROM `groupe`');
+        $groupes->execute();
 
-        return $groupe;
+        return $groupes;
     }
 }

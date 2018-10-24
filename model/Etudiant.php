@@ -1,5 +1,4 @@
 <?php
-require_once('connectBD.php');
 
 class Etudiant extends connectDB
 {
@@ -39,7 +38,7 @@ class Etudiant extends connectDB
 
     function getAllEtudiant()
     {
-        $db = dbConnect();
+        $db = connectDb::dbConnect();
         $etudiant = $db->prepare('SELECT * FROM `etudiant`');
         $etudiant->execute();
 

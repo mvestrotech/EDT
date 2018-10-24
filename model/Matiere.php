@@ -1,7 +1,5 @@
 <?php
 
-require_once('connectBD.php');
-
 class Matiere extends connectDb {
 
     private $id_mat;
@@ -32,7 +30,7 @@ class Matiere extends connectDb {
 
     function getAllMatiere()
     {
-        $db = dbConnect();
+        $db = connectDb::dbConnect();
         $matiere = $db->prepare('SELECT * FROM `matiere`');
         $matiere->execute();
 
