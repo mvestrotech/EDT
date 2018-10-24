@@ -9,16 +9,7 @@ class Salle extends connectDb{
     private $type_salle;
     private $nb_postes;
 
-    public function __construct($id_Salle, $nom, $label, $batiment, $type_salle, $nb_postes) {
-        $this->id_Salle = $id_Salle;
-        $this->nom = $nom;
-        $this->label = $label;
-        $this->batiment = $batiment;
-        $this->type_salle = $type_salle;
-        $this->nb_postes = $nb_postes;
-    }
-
-    function getAllSalles()
+    public static function getAllSalles()
     {
         $db = connectDb::dbConnect();
         $salles = $db->prepare('SELECT * FROM `salle`');

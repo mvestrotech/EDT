@@ -7,29 +7,20 @@ require 'model/connectDb.php';
     private $tDeb;
     private $tFin;
 
-    public function __construct($id_period,$id_promo,$label,$tDeb,$tFin)
-    {
-      $this->id_period = $id_period;
-      $this->id_promo = $id_promo;
-      $this->label = $label;
-      $this->tDeb = $tDeb;
-      $this->tFin = $tFon;
-    }
-
-    public function getAllPeriode()
+    public static function getAllPeriodes()
     {
       $db = connectDb::dbConnect();
-      $periode = $db->prepare('SELECT * FROM `period`');
-      $periode->execute();
-      return $periode;
+      $periodes = $db->prepare('SELECT * FROM `period`');
+      $periodes->execute();
+      return $periodes;
     }
 
-    public function getAllPeriodePromo()
+    public static function getAllPeriodePromos()
     {
       $db = connectDb::dbConnect();
-      $periode = $db->prepare('SELECT period.id_period, promotion.id_promo, period.label as "label_period", period.tDeb, period.tFin, promotion.label as "label_promo" FROM `period` INNER JOIN promotion ON promotion.id_promo = period.id_promo');
-      $periode->execute();
-      return $periode;
+      $periodes = $db->prepare('SELECT period.id_period, promotion.id_promo, period.label as "label_period", period.tDeb, period.tFin, promotion.label as "label_promo" FROM `period` INNER JOIN promotion ON promotion.id_promo = period.id_promo');
+      $periodes->execute();
+      return $periodes;
     }
   }
 ?>

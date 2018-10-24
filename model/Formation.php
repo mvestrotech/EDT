@@ -6,16 +6,7 @@ class Formation extends connectDb {
     private $nom;
     private $label;
 
-
-    public function __construct($id_form, $nom, $label)
-    {
-        $this->id_form = $id_form;
-        $this->nom = $nom;
-        $this->label = $label;
-    }
-
-
-    function getAllFormation()
+    public static function getAllFormations()
     {
         $db = connectDb::dbConnect();
         $formations = $db->prepare('SELECT * FROM `formation`');
