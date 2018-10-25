@@ -29,7 +29,17 @@
 								<div class="col-md-12" id="select_form">
 										<label for="sel1">Select Module:</label>
 										<select class="form-control" id="select_module">
+											<option>Module</option>
 										</select>
+										<label for="sel1" style="display:none;" id="label_matiere">Select Matiere:</label>
+										<select class="form-control" id="select_matiere" style="display:none;">
+											<option>Matiere</option>
+										</select>
+										<label for="sel1" style="display:none;" id="label_periode">Select Période:</label>
+										<select class="form-control" id="select_periode" style="display:none;">
+											<option>Période</option>
+										</select>
+										<button class="btn" id="validate" style="display:none;">Valider</button>
 								</div> 
 							</div>
 						</div>
@@ -56,64 +66,102 @@
 				</div>
 			</div> 
 		</div>
-	</body>
-
-	<script>
-		var baseurl = window.location.origin+window.location.pathname;
-		if (baseurl.charAt(baseurl.length-1)=="/"){
-			baseurl = baseurl.slice(0,-1);
-		}
-		
-		/*
-		* Handler sur click sur le bouton "Générer EDT"
-		*/
-		$( "#start" ).one('click', function() {
-			//Récupération des modules
-			$.get(baseurl+"?controle=ModuleController&action=index", function(data, status){
-				var object = JSON.parse(data);
+		<script>
+			var baseurl = window.location.origin+window.location.pathname;
+			if (baseurl.charAt(baseurl.length-1)=="/"){
+				baseurl = baseurl.slice(0,-1);
+			}
+			
+			/*
+			* Handler sur click sur le bouton "Générer EDT"
+			*/
+			$( "#start" ).one('click', function() {
+				//Récupération des modules
+				$.get(baseurl+"?controle=ModuleController&action=index", function(data, status){
+					var object = JSON.parse(data);
+						for (var o in object){
+							var item = object[o];
+							//Insertion des modules dans le tableau
+							$('<div class="row edt" id= row'+item.id+'>'+
+							'<div class="cellules titre droppable silver" id='+item.id+'>'+item.nom+'</div>').insertAfter($('#H'));
+							//Insertion des modules dans le select
+							$('#select_module').append('<option id='+item.id+'>'+item.nom+'</option>');
+						}
+				});
+				//Récupération des périodes
+				$.get(baseurl+"?controle=PeriodeController&action=index", function(data,status){
+					var object = JSON.parse(data);
 					for (var o in object){
 						var item = object[o];
-						//Insertion des modules dans le tableau
-						$('<div class="row edt">'+
-						'<div class="cellules titre droppable silver" id='+item.id+'>'+item.nom+'</div>'+
-						'<div class="cellules droppable silver"><p class="">1-1</p></div>'+
-						'<div class="cellules droppable silver"><p class="">1-2</p></div>'+
-						'<div class="cellules droppable silver"><p class="">1-3</p></div>'+
-						'<div class="cellules droppable silver"><p class="">1-4</p></div>'+
-						'<div class="cellules droppable silver"><p class="">1-5</p></div>'+
-						'<div class="cellules droppable silver"><p class="">1-6</p></div>'+
-						'<div class="cellules droppable silver"><p class="tot">-</p></div>').insertAfter($('#H'));
-						//Insertion des modules dans le select
-						$('#select_module').append('<option id='+item.id+'>'+item.nom+'</option>');
+						$('<div class="cellules titre lime">'+item.periode+' ('+item.diff+' sem)</div>').insertAfter($('#titre'))
 					}
+				})
 			});
+
+			/*
+			* Handler du select module
+			*/
+			$('#select_module').change(function(){ 
+				var id = $(this).children(":selected").attr("id");
+			$.get(baseurl+"?controle=MatiereController&action=showByModule&id="+id, function(data,status){
+				var object = JSON.parse(data);
+				// $('#select_form').append('<label for="sel1">Select Matiere:</label>'+
+				// 							'<select class="form-control" id="select_matiere">'+
+				// 							'</select>')	
+				$('#label_matiere').css("display","block");
+				$("#select_matiere").css("display", "block");	
+				for (var o in object){
+					var item = object[o];
+					$('#select_matiere').append('<option id='+item.id+'>'+item.nom+'</option>');	
+				}
+				$("#select_module").off('change');
+				$('#select_module').children('option:not(:selected)').remove();
+			});
+		});
+
+		/*
+		* Handler du select matiere
+		*/
+		$('#select_matiere').change(function(){
 			//Récupération des périodes
 			$.get(baseurl+"?controle=PeriodeController&action=index", function(data,status){
 				var object = JSON.parse(data);
+				$('#label_periode').css("display","block");
+				$("#select_periode").css("display", "block");	
 				for (var o in object){
 					var item = object[o];
-					$('<div class="cellules titre lime">'+item.periode+' ('+item.diff+' sem)</div>').insertAfter($('#titre'))
+					$('#select_periode').append('<option id='+item.id+'>'+item.periode +'('+item.diff+'sem)</option>');
 				}
-			})
+				$("#select_matiere").off('change');
+				$('#select_matiere').children('option:not(:selected)').remove();
+			});	
 		});
 
 		/*
-		* Handler du select module
+		* Handler du select periode
 		*/
-		$('#select_module').change(function(){ 
-			var id = $(this).children(":selected").attr("id");
-		$.get(baseurl+"?controle=MatiereController&action=showByModule&id="+id, function(data,status){
-			var object = JSON.parse(data);
-			$('#select_form').append('<label for="sel1">Select Matiere:</label>'+
-										'<select class="form-control" id="select_matiere">'+
-										'</select>')		
-			for (var o in object){
-				var item = object[o];
-				$('#select_matiere').append('<option id='+item.id+'>'+item.nom+'</option>');	
-			}
-			$("#select_module").off('change');
-			$('select').children('option:not(:selected)').remove();
+		$('#select_periode').change(function(){
+			$("#select_matiere").off('change');
+			$('#select_matiere').children('option:not(:selected)').remove();
+			$("#validate").css("display", "block");	
 		});
-	});
-	</script>
+		$('#validate').one('click',function(){
+			id_module = $('#select_module').children(":selected").attr("id");
+			id_matiere = $('#select_matiere').children(":selected").attr("id");
+			id_periode = $('#select_periode').children(":selected").attr("id");
+			$.get(baseurl+"?controle=MatiereController&action=show&id="+id_matiere, function(data,status){
+				var item = JSON.parse(data);
+				if (id_periode == 1){
+				$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'>'+item.nom+' </div>');
+			}
+			else{
+				for (var i = 1; i < id_periode; i++) {
+					$('#row'+id_module).append('<div class="cellules titre droppable silver"></div>');
+				}
+				$('#row'+id_module).append('<div class="cellules titre droppable silver">'+item.nom+'</div>');
+			}
+			});
+		});
+		</script>
+	</body>
 </html>
