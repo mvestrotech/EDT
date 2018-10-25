@@ -119,7 +119,7 @@
 				var object = JSON.parse(data);
 				for (var o in object){
 					var item = object[o];
-					$('<div class="cellules titre lime">'+item.periode+'</div>').insertAfter($('#titre'))
+					$('<div class="cellules titre lime">'+item.periode+' ('+item.diff+' jours)</div>').insertAfter($('#titre'))
 				}
 			})
 		});
