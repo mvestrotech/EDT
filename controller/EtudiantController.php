@@ -16,7 +16,7 @@ class EtudiantController extends Etudiant {
             $obj_json = array('id' => utf8_encode($etudiant['id_etu']),
             'promo' => utf8_encode($etudiant['id_promo']),
             'groupe' => utf8_encode($etudiant['id_grpe']),
-            'Nom' => utf8_encode($etudiant['nom']),
+            'nom' => utf8_encode($etudiant['nom']),
             'prenom' => utf8_encode($etudiant['prenom']),
             'e-mail' => utf8_encode($etudiant['email']),
             'login' => utf8_encode($etudiant['login_etu']),
