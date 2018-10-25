@@ -95,6 +95,7 @@
 		var baseurl = window.location.origin+window.location.pathname;
 		$( "#start" ).click(function() {
 			//Fonction Ajax pour récupérer tous les modules
+			alert(baseurl);
 			$.get(baseurl+"?controle=ModuleController&action=index", function(data, status){
 					var obj = JSON.parse(data);
 					for (var o in obj){
