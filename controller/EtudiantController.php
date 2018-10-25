@@ -9,7 +9,7 @@
 class EtudiantController extends Etudiant {
 
     public function index(){
-        $etudiants = Etudiant::getAllEtudiant();
+        $etudiants = Etudiant::getAllEtudiants();
         $array_json = array();
 
         while ($etudiant = $etudiants->fetch()){
@@ -23,7 +23,7 @@ class EtudiantController extends Etudiant {
             'pass' => utf8_encode($etudiant['pass_etu']),
             'matricule' => utf8_encode($etudiant['matricule']),       
         );
-          array_push($array_json,$obj_json);
+        array_push($array_json,$obj_json);
         }
         echo  json_encode($array_json);
     }
