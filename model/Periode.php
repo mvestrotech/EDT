@@ -6,11 +6,12 @@ require 'model/connectDb.php';
     private $label;
     private $tDeb;
     private $tFin;
+    private $diff;
 
     public static function getAllPeriodes()
     {
       $db = connectDb::dbConnect();
-      $periodes = $db->prepare('SELECT * FROM `period`');
+      $periodes = $db->prepare('SELECT id.period, id_promo, label, tDeb, tFin, DATEDIFF(FROM_UNIXTIME(tFin), FROM_UNIXTIME(tDeb)) as "diff" FROM `period`');
       $periodes->execute();
       return $periodes;
     }
