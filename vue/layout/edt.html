@@ -97,7 +97,7 @@
 		if (baseurl.charAt(baseurl.length-1)=="/"){
 			baseurl = baseurl.slice(0,-1);
 		}
-		$( "#start" ).click(function() {
+		$( "#start" ).one('click', function() {
 			//Fonction Ajax pour récupérer tous les modules
 			$.get(baseurl+"?controle=ModuleController&action=index", function(data, status){
 				var object = JSON.parse(data);
