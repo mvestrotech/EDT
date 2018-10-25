@@ -10,7 +10,7 @@ require 'model/connectDb.php';
     public static function getAllModules()
     {
       $db = connectDb::dbConnect();
-      $modules = $db->prepare("SELECT * FROM `uemodule` WHERE classif='module' ORDER BY id_uemod DESC");
+      $modules = $db->prepare('SELECT * FROM `uemodule` ORDER BY id_uemod DESC');
       $modules->execute();
       return $modules;
     }

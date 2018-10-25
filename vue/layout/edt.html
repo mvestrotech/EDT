@@ -98,11 +98,22 @@
 		});
 
 		/*
-		* Handler du formulaire
+		* Handler du select module
 		*/
 		$('#select_module').change(function(){ 
-    var module_selected = $(this).val();
-		// $.get(baseurl+"?controle=MatiereController&action=")
+			var id = $(this).children(":selected").attr("id");
+		$.get(baseurl+"?controle=MatiereController&action=showByModule&id="+id, function(data,status){
+			var object = JSON.parse(data);
+			$('#select_form').append('<label for="sel1">Select Matiere:</label>'+
+										'<select class="form-control" id="select_matiere">'+
+										'</select>')		
+			for (var o in object){
+				var item = object[o];
+				$('#select_matiere').append('<option id='+item.id+'>'+item.nom+'</option>');	
+			}
+			$("#select_module").off('change');
+			$('select').children('option:not(:selected)').remove();
+		});
 	});
 	</script>
 </html>

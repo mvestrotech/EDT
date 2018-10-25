@@ -1,6 +1,6 @@
 <?php
 require 'model/connectDb.php';
-class Matiere extends connectDb {
+class Matiere extends connectDb{
 
     private $id_mat;
     private $id_ue;
@@ -23,7 +23,7 @@ class Matiere extends connectDb {
 
     public static function getMatieresByModule($id){
         $db = connectDb::dbConnect();
-        $matieres = $db-prepare('SELECT * FROM `matiere` WHERE id_mod='.$id);
+        $matieres = $db->prepare('SELECT * FROM `matiere` WHERE id_mod='.$id);
         $matieres->execute();
         return $matieres;
     }
