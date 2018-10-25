@@ -16,7 +16,7 @@
 			<h1 class="text-center">Grille d'EDT modules/périodes</h1>
 
 			<div class="zone" id="btns">
-				<button class="btn" id="start">Commencer l'EDT</button>
+				<button class="btn" id="start">Générer l'EDT</button>
 				<button class="btn" id="edt">sélection d'un edt</button>
 				<button class="btn" id="matiere">créer une matière dans l'edt</button>
 				<button class="btn" id="calculer">calculer les heures</button>
@@ -41,17 +41,17 @@
 
 			<div class="zone" id="edt">
 				<div class="row"  id="H">
-					<div class="cellules titre silver">
+					<div class="cellules titre silver" id="titre">
 						<p class="barre"></p>
 						<p class="hautD">période</p>
 						<p class="basG">modules</p>  </div>
-					<div class="cellules titre lime">sept-oct (3sem)</div>
+					<!-- <div class="cellules titre lime">sept-oct (3sem)</div>
 					<div class="cellules titre lime">nov-dec (3sem)</div>
 					<div class="cellules titre lime">janv-fev (3sem)</div>
 					<div class="cellules titre lime">mars (2sem)</div>
 					<div class="cellules titre lime">mai(3sem)</div>
 					<div class="cellules titre lime">juin-juillet(3sem)</div>
-					<div class="cellules total silver"><b>total par module</b></div>
+					<div class="cellules total silver"><b>total par module</b></div> -->
 				</div>
 				<!-- Premiere ligne -->
 				<!-- <div class="row edt" id="row">
@@ -99,11 +99,10 @@
 		}
 		$( "#start" ).click(function() {
 			//Fonction Ajax pour récupérer tous les modules
-			alert(baseurl);
 			$.get(baseurl+"?controle=ModuleController&action=index", function(data, status){
-					var obj = JSON.parse(data);
-					for (var o in obj){
-						var item = obj[o];
+				var object = JSON.parse(data);
+					for (var o in object){
+						var item = object[o];
 						$('<div class="row edt">'+
 						'<div class="cellules titre droppable silver" id='+item.id+'>'+item.nom+'</div>'+
 						'<div class="cellules droppable silver"><p class="">1-1</p></div>'+
@@ -117,7 +116,11 @@
 			});
 			//Récupération de toutes les périodes
 			$.get(baseurl+"?controle=PeriodeController&action=index", function(data,status){
-				alert(data);
+				var object = JSON.parse(data);
+				for (var o in object){
+					var item = object[o];
+					$('<div class="cellules titre lime">'+item.periode+'</div>').insertAfter($('#titre'))
+				}
 			})
 		});
 	</script>

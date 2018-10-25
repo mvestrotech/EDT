@@ -5,9 +5,12 @@ class PeriodeController{
   //Retourne toutes les périodes
   public function index(){
     $periodes = Periode::getAllPeriodes();
+    $array_json = array();
     while($periode = $periodes -> fetch()){
-      var_dump($periode);
+      $obj_json = array('id' => $periode['id_period'], 'periode' => date("M",$periode['tDeb']).' - '.date("M",$periode['tFin']));
+      array_push($array_json,$obj_json);
     }
+    echo json_encode($array_json);
   }
 }
 ?>

@@ -11,7 +11,7 @@ require 'model/connectDb.php';
     public static function getAllPeriodes()
     {
       $db = connectDb::dbConnect();
-      $periodes = $db->prepare('SELECT id.period, id_promo, label, tDeb, tFin, DATEDIFF(FROM_UNIXTIME(tFin), FROM_UNIXTIME(tDeb)) as "diff" FROM `period`');
+      $periodes = $db->prepare('SELECT id_period, id_promo, label, tDeb, tFin, DATEDIFF(FROM_UNIXTIME(tFin), FROM_UNIXTIME(tDeb)) as "diff" FROM `period`');
       $periodes->execute();
       return $periodes;
     }
