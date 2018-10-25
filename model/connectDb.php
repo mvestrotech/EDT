@@ -5,7 +5,7 @@ class connectDb{
         $hostname = "localhost";	//ou localhost
         $base= "proj";
         $loginBD= "root";	//ou "root"
-        $passBD="root";
+        $passBD="";
 
         try
         {
