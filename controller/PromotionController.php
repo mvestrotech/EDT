@@ -1,5 +1,5 @@
 <?php
-require("./model/Module.php");
+require("./model/Promotion.php");
 
 class PromotionController{
 

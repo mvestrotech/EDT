@@ -1,5 +1,5 @@
 <?php
-require("./model/Module.php");
+require("./model/Matiere.php");
 
 class MatiereController{
 

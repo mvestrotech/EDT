@@ -1,5 +1,5 @@
 <?php
-require("./model/Module.php");
+require("./model/Groupe.php");
 
 class GroupeController{
 
