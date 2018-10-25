@@ -93,6 +93,10 @@
 	<script>
 		//Récupération de l'url de base
 		var baseurl = window.location.origin+window.location.pathname;
+		//Au cas-où le baseurl finit par un /
+		if (baseurl.charAt(baseurl.length-1)=="/"){
+			baseurl = baseurl.slice(0,-1);
+		}
 		$( "#start" ).click(function() {
 			//Fonction Ajax pour récupérer tous les modules
 			$.get(baseurl+"?controle=ModuleController&action=index", function(data, status){
@@ -110,6 +114,10 @@
 						'<div class="cellules droppable silver"><p class="tot">-</p></div>').insertAfter($('#H'));
 					}
 			});
+			//Récupération de toutes les périodes
+			$.get(baseurl+"?controle=PeriodeController&action=index", function(data,status){
+				alert(data);
+			})
 		});
 	</script>
 </html>

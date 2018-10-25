@@ -1,11 +1,13 @@
 <?php
-require("./model/Module.php");
+require("./model/Periode.php");
 class PeriodeController{
 
   //Retourne toutes les périodes
   public function index(){
-    $periodes = Periode::getAllPeriode();
-    require('vue/layout/edt.html');
+    $periodes = Periode::getAllPeriodes();
+    while($periode = $periodes -> fetch()){
+      var_dump($periode);
+    }
   }
 }
 ?>
