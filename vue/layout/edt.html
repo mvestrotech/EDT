@@ -40,6 +40,7 @@
 											<option>Période</option>
 										</select>
 										<button class="btn" id="validate" style="display:none;">Valider</button>
+										<button class="btn" id="reload_page" style="display:none;">Ajouter une nouvelle matière</button>
 								</div> 
 							</div>
 						</div>
@@ -101,7 +102,7 @@
 			/*
 			* Handler du select module
 			*/
-			$('#select_module').change(function(){ 
+			$('#select_module').change(function(){
 				var id = $(this).children(":selected").attr("id");
 			$.get(baseurl+"?controle=MatiereController&action=showByModule&id="+id, function(data,status){
 				var object = JSON.parse(data);
@@ -109,13 +110,13 @@
 				// 							'<select class="form-control" id="select_matiere">'+
 				// 							'</select>')	
 				$('#label_matiere').css("display","block");
-				$("#select_matiere").css("display", "block");	
+				$()
+				$("#select_matiere").css("display", "block");
 				for (var o in object){
 					var item = object[o];
 					$('#select_matiere').append('<option id='+item.id+'>'+item.nom+'</option>');	
 				}
-				$("#select_module").off('change');
-				$('#select_module').children('option:not(:selected)').remove();
+				$('#select_module').prop('disabled', 'disabled');
 			});
 		});
 
@@ -132,8 +133,7 @@
 					var item = object[o];
 					$('#select_periode').append('<option id='+item.id+'>'+item.periode +'('+item.diff+'sem)</option>');
 				}
-				$("#select_matiere").off('change');
-				$('#select_matiere').children('option:not(:selected)').remove();
+				$('#select_matiere').prop('disabled', 'disabled');
 			});	
 		});
 
@@ -141,11 +141,12 @@
 		* Handler du select periode
 		*/
 		$('#select_periode').change(function(){
-			$("#select_matiere").off('change');
-			$('#select_matiere').children('option:not(:selected)').remove();
 			$("#validate").css("display", "block");	
 		});
-		$('#validate').one('click',function(){
+		/*
+		* Handler sur bouton de validation
+		*/
+		$('#validate').click(function(){
 			id_module = $('#select_module').children(":selected").attr("id");
 			id_matiere = $('#select_matiere').children(":selected").attr("id");
 			id_periode = $('#select_periode').children(":selected").attr("id");
@@ -156,11 +157,32 @@
 			}
 			else{
 				for (var i = 1; i < id_periode; i++) {
-					$('#row'+id_module).append('<div class="cellules titre droppable silver"></div>');
+					$('#row'+id_module).append('<div class="cellules titre droppable silver" id=0></div>');
 				}
-				$('#row'+id_module).append('<div class="cellules titre droppable silver">'+item.nom+'</div>');
+				$('#row'+id_module).append('<div class="cellules titre droppable silver" id='>+id_module+'>'+item.nom+'</div>');
 			}
 			});
+			$(this).css("display", "none");
+			$("#reload_page").css("display", "block");	
+		});
+
+		/*
+		* Handler du bouton d'ajout d'une nouvelle matière
+		*/
+		$('#reload_page').click(function(){
+			$('#label_matiere').css("display","none");
+			$('#select_matiere').removeAttr('disabled');
+			$("#select_matiere").css("display", "none");
+			$('#select_matiere').children('option:not(:first)').remove();
+			$('#select_matiere option:contains("Matiere")').prop('selected',true);
+
+			$('#label_periode').css("display","none");
+			$('#select_periode').css("display","none");
+			$('#select_periode').children('option:not(:first)').remove();
+
+			$(this).css("display","none");
+			$('#select_module').removeAttr('disabled');
+			$('#select_module option:contains("Module")').prop('selected',true);
 		});
 		</script>
 	</body>
