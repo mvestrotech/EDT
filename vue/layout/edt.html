@@ -92,9 +92,11 @@
 				//Récupération des périodes
 				$.get(baseurl+"?controle=PeriodeController&action=index", function(data,status){
 					var object = JSON.parse(data);
+					var cpt = object.length;
 					for (var o in object){
 						var item = object[o];
-						$('<div class="cellules titre lime">'+item.periode+' ('+item.diff+' sem)</div>').insertAfter($('#titre'))
+						$('<div class="cellules titre lime" id='+cpt+'>'+item.periode+' ('+item.diff+' sem)</div>').insertAfter($('#titre'))
+						cpt = cpt - 1;
 					}
 				})
 			});
@@ -153,13 +155,19 @@
 			$.get(baseurl+"?controle=MatiereController&action=show&id="+id_matiere, function(data,status){
 				var item = JSON.parse(data);
 				if (id_periode == 1){
-				$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'>'+item.nom+' </div>');
+					if ($('#'+id_module+'-'+id_periode).is(':empty')){
+						$('#'+id_module+'-'+id_periode).html(item.nom);
+					} else{
+					$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'-'+id_periode+'>'+item.nom+'</div>');
+					}
 			}
 			else{
 				for (var i = 1; i < id_periode; i++) {
-					$('#row'+id_module).append('<div class="cellules titre droppable silver" id=0></div>');
+					if ($('#'+id_module+'-'+i).is(':empty')){
+						$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'-'+i+'></div>');
+					}
 				}
-				$('#row'+id_module).append('<div class="cellules titre droppable silver" id='>+id_module+'>'+item.nom+'</div>');
+				$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'-'+id_periode+'>'+item.nom+'</div>');
 			}
 			});
 			$(this).css("display", "none");
