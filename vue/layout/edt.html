@@ -1,122 +1,140 @@
 <!doctype html>
 <html lang="fr">
-	<!-- HEADER -->
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Application - Emploi du temps</title>
-		<link rel="stylesheet" type="text/css" href="./vue/styleCSS/style.css"/>
-		<link rel="stylesheet" type="text/css" href="./vue/styleCSS/bootstrap.css"/>
-		<link rel="stylesheet" type="text/css" href="./vue/styleCSS/normalize.css"/>
-		<script src="./vue/scripts/jquery-3.3.1.min.js"></script>
-	</head>
-	<!-- BODY -->
-	<body>
-		<div class="container">
-			<div class ="row">
-				<div class="col-md-6">
-					<h1 class="text-center">Grille d'EDT modules/périodes</h1>
-					<div class="row">
+<!-- HEADER -->
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Application - Emploi du temps</title>
+	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/style.css" />
+	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/normalize.css" />
+	<script src="./vue/scripts/jquery-3.3.1.min.js"></script>
+</head>
+<!-- BODY -->
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1 class="text-center">Grille d'EDT modules/périodes</h1>
+				<div class="row">
 					<div class="zone col-md-6" id="btns">
 						<button class="btn" id="start">Générer l'EDT</button>
 						<button class="btn" id="edt">sélection d'un edt</button>
 						<button class="btn" id="matiere">créer une matière dans l'edt</button>
 						<button class="btn" id="calculer">calculer les heures</button>
 					</div>
-						<div class="col-md-4">
-							<div class="form-group row">
-								<div class="col-md-12" id="select_form">
-										<label for="sel1">Select Module:</label>
-										<select class="form-control" id="select_module">
-											<option>Module</option>
-										</select>
-										<label for="sel1" style="display:none;" id="label_matiere">Select Matiere:</label>
-										<select class="form-control" id="select_matiere" style="display:none;">
-											<option>Matiere</option>
-										</select>
-										<label for="sel1" style="display:none;" id="label_periode">Select Période:</label>
-										<select class="form-control" id="select_periode" style="display:none;">
-											<option>Période</option>
-										</select>
-										<button class="btn" id="validate" style="display:none;">Valider</button>
-										<button class="btn" id="reload_page" style="display:none;">Ajouter une nouvelle matière</button>
-								</div> 
+					<div class="col-md-4">
+						<div class="form-group row">
+							<div class="col-md-12" id="select_form">
+								<label for="sel1">Select Module:</label>
+								<select class="form-control" id="select_module">
+									<option>Module</option>
+								</select>
+								<label for="sel1" style="display:none;" id="label_matiere">Select Matiere:</label>
+								<select class="form-control" id="select_matiere" style="display:none;">
+									<option>Matiere</option>
+								</select>
+								<label for="sel1" style="display:none;" id="label_periode">Select Période:</label>
+								<select class="form-control" id="select_periode" style="display:none;">
+									<option>Période</option>
+								</select>
+								<button class="btn" id="validate" style="display:none;">Valider</button>
+								<button class="btn" id="reload_page" style="display:none;">Ajouter une nouvelle matière</button>
 							</div>
 						</div>
 					</div>
-					<div class="zone" id="edt">
-						<div class="row" id="H">
-							<div class="cellules titre silver" id="titre">
-								<p class="barre"></p>
-								<p class="hautD">période</p>
-								<p class="basG">modules</p>
-							</div>
-						</div>
-						<div class="row cptV">
-							<div class="cellules silver"><p><b>total/période</b></p></div>
-							<div class="cellules total silver"><p class='tot'>-</p></div>
-							<div class="cellules total silver"><p class='tot'>-</p></div>
-							<div class="cellules total silver"><p class='tot'>-</p></div>
-							<div class="cellules total silver"><p class='tot'>-</p></div>
-							<div class="cellules total silver"><p class='tot'>-</p></div>
-							<div class="cellules total silver"><p class='tot'>-</p></div>
-							<div class="cellules total silver"><p></p></div>
-						</div>
-					</div>			
 				</div>
-			</div> 
+				<div class="zone" id="edt">
+					<div class="row" id="H">
+						<div class="cellules titre silver" id="titre">
+							<p class="barre"></p>
+							<p class="hautD">période</p>
+							<p class="basG">modules</p>
+						</div>
+					</div>
+					<div class="row cptV">
+						<div class="cellules silver">
+							<p><b>total/période</b></p>
+						</div>
+						<div class="cellules total silver">
+							<p class='tot'>-</p>
+						</div>
+						<div class="cellules total silver">
+							<p class='tot'>-</p>
+						</div>
+						<div class="cellules total silver">
+							<p class='tot'>-</p>
+						</div>
+						<div class="cellules total silver">
+							<p class='tot'>-</p>
+						</div>
+						<div class="cellules total silver">
+							<p class='tot'>-</p>
+						</div>
+						<div class="cellules total silver">
+							<p class='tot'>-</p>
+						</div>
+						<div class="cellules total silver">
+							<p></p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<script>
-			var baseurl = window.location.origin+window.location.pathname;
-			if (baseurl.charAt(baseurl.length-1)=="/"){
-				baseurl = baseurl.slice(0,-1);
-			}
-			
-			/*
-			* Handler sur click sur le bouton "Générer EDT"
-			*/
-			$( "#start" ).one('click', function() {
-				//Récupération des modules
-				$.get(baseurl+"?controle=ModuleController&action=index", function(data, status){
-					var object = JSON.parse(data);
-						for (var o in object){
-							var item = object[o];
-							//Insertion des modules dans le tableau
-							$('<div class="row edt" id= row'+item.id+'>'+
-							'<div class="cellules titre droppable silver" id='+item.id+'>'+item.nom+'</div>').insertAfter($('#H'));
-							//Insertion des modules dans le select
-							$('#select_module').append('<option id='+item.id+'>'+item.nom+'</option>');
-						}
-				});
-				//Récupération des périodes
-				$.get(baseurl+"?controle=PeriodeController&action=index", function(data,status){
-					var object = JSON.parse(data);
-					var cpt = object.length;
-					for (var o in object){
-						var item = object[o];
-						$('<div class="cellules titre lime" id='+cpt+'>'+item.periode+' ('+item.diff+' sem)</div>').insertAfter($('#titre'))
-						cpt = cpt - 1;
-					}
-				})
-			});
+	</div>
+	<script>
+		var baseurl = window.location.origin + window.location.pathname;
+		if (baseurl.charAt(baseurl.length - 1) == "/") {
+			baseurl = baseurl.slice(0, -1);
+		}
 
-			/*
-			* Handler du select module
-			*/
-			$('#select_module').change(function(){
-				var id = $(this).children(":selected").attr("id");
-			$.get(baseurl+"?controle=MatiereController&action=showByModule&id="+id, function(data,status){
+		/*
+		* Handler sur click sur le bouton "Générer EDT"
+		*/
+		$("#start").one('click', function () {
+			//Récupération des modules
+			$.get(baseurl + "?controle=ModuleController&action=index", function (data, status) {
+				var object = JSON.parse(data);
+				for (var o in object) {
+					var item = object[o];
+					//Insertion des modules dans le tableau
+					$('<div class="row edt" id= row' + item.id + '>' +
+						'<div class="cellules titre droppable silver" id=' + item.id + '>' + item.nom + '</div>').insertAfter($('#H'));
+					//Insertion des modules dans le select
+					$('#select_module').append('<option id=' + item.id + '>' + item.nom + '</option>');
+				}
+			});
+			//Récupération des périodes
+			$.get(baseurl + "?controle=PeriodeController&action=index", function (data, status) {
+				var object = JSON.parse(data);
+				var cpt = object.length;
+				for (var o in object) {
+					var item = object[o];
+					$('<div class="cellules titre lime" id=' + cpt + '>' + item.periode + ' (' + item.diff + ' sem)</div>').insertAfter($('#titre'))
+					cpt = cpt - 1;
+				}
+			})
+		});
+
+		/*
+		* Handler du select module
+		*/
+		$('#select_module').change(function () {
+			var id = $(this).children(":selected").attr("id");
+			$.get(baseurl + "?controle=MatiereController&action=showByModule&id=" + id, function (data, status) {
 				var object = JSON.parse(data);
 				// $('#select_form').append('<label for="sel1">Select Matiere:</label>'+
 				// 							'<select class="form-control" id="select_matiere">'+
 				// 							'</select>')	
-				$('#label_matiere').css("display","block");
+				$('#label_matiere').css("display", "block");
 				$()
 				$("#select_matiere").css("display", "block");
-				for (var o in object){
+				for (var o in object) {
 					var item = object[o];
-					$('#select_matiere').append('<option id='+item.id+'>'+item.nom+'</option>');	
+					$('#select_matiere').append('<option id=' + item.id + '>' + item.nom + '</option>');
 				}
 				$('#select_module').prop('disabled', 'disabled');
 			});
@@ -125,73 +143,101 @@
 		/*
 		* Handler du select matiere
 		*/
-		$('#select_matiere').change(function(){
+		$('#select_matiere').change(function () {
 			//Récupération des périodes
-			$.get(baseurl+"?controle=PeriodeController&action=index", function(data,status){
+			$.get(baseurl + "?controle=PeriodeController&action=index", function (data, status) {
 				var object = JSON.parse(data);
-				$('#label_periode').css("display","block");
-				$("#select_periode").css("display", "block");	
-				for (var o in object){
+				$('#label_periode').css("display", "block");
+				$("#select_periode").css("display", "block");
+				for (var o in object) {
 					var item = object[o];
-					$('#select_periode').append('<option id='+item.id+'>'+item.periode +'('+item.diff+'sem)</option>');
+					$('#select_periode').append('<option id=' + item.id + '>' + item.periode + '(' + item.diff + 'sem)</option>');
 				}
 				$('#select_matiere').prop('disabled', 'disabled');
-			});	
+			});
 		});
 
 		/*
 		* Handler du select periode
 		*/
-		$('#select_periode').change(function(){
-			$("#validate").css("display", "block");	
+		$('#select_periode').change(function () {
+			$("#validate").css("display", "block");
 		});
 		/*
 		* Handler sur bouton de validation
 		*/
-		$('#validate').click(function(){
+		$('#validate').click(function () {
 			id_module = $('#select_module').children(":selected").attr("id");
 			id_matiere = $('#select_matiere').children(":selected").attr("id");
 			id_periode = $('#select_periode').children(":selected").attr("id");
-			$.get(baseurl+"?controle=MatiereController&action=show&id="+id_matiere, function(data,status){
+			$.get(baseurl + "?controle=MatiereController&action=show&id=" + id_matiere, function (data, status) {
 				var item = JSON.parse(data);
-				if (id_periode == 1){
-					if ($('#'+id_module+'-'+id_periode).is(':empty')){
-						$('#'+id_module+'-'+id_periode).html(item.nom);
-					} else{
-					$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'-'+id_periode+'>'+item.nom+'</div>');
+
+				/*
+				* Cette partie est assez compliqué j'ai donc mit un fichier .txt pour expliquer mon algorithme.
+				*/
+
+				//Si on veut ajouter à la première case
+				if (id_periode == 1) {
+					//Si la div est vide mais existe
+					if ($('#' + id_module + '-' + id_periode).is(':empty')) {
+						$('#' + id_module + '-' + id_periode).html(item.nom);
 					}
-			}
-			else{
-				for (var i = 1; i < id_periode; i++) {
-					if ($('#'+id_module+'-'+i).is(':empty')){
-						$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'-'+i+'></div>');
+					//La div existe mais n'est pas vide, on doit donc concaténer le texte
+					else if ($('#' + id_module + '-' + id_periode).length) {
+						var old_text = $('#' + id_module + '-' + id_periode).html();
+						$('#' + id_module + '-' + id_periode).html(old_text + " | " + item.nom);
+					}
+					//La div n'existe pas, on doit donc la créer				
+					else {
+						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + item.nom + '</div>');
 					}
 				}
-				$('#row'+id_module).append('<div class="cellules titre droppable silver" id='+id_module+'-'+id_periode+'>'+item.nom+'</div>');
-			}
+				else {
+					for (var i = 1; i < id_periode; i++) {
+						if ($('#' + id_module + '-' + i).length == 0) {
+							//Si la div n'existe pas on la créer 
+							$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + i + '></div>');
+						}
+					}
+					//Si la div est vide mais existe
+					if ($('#' + id_module + '-' + i).is(':empty')) {
+						$('#' + id_module + '-' + id_periode).html(item.nom);
+					}
+					//La div existe mais n'est pas vide on doit donc concaténer le texte
+					else if ($('#' + id_module + '-' + id_periode).length) {
+						var old_text = $('#' + id_module + '-' + id_periode).html();
+						$('#' + id_module + '-' + id_periode).html(old_text + " | " + item.nom);
+					}
+					//La div n'existe pas on doit donc créer la div
+					else {
+						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + item.nom + '</div>');
+					}
+				}
 			});
 			$(this).css("display", "none");
-			$("#reload_page").css("display", "block");	
+			$("#reload_page").css("display", "block");
 		});
 
 		/*
 		* Handler du bouton d'ajout d'une nouvelle matière
 		*/
-		$('#reload_page').click(function(){
-			$('#label_matiere').css("display","none");
+		$('#reload_page').click(function () {
+			$('#label_matiere').css("display", "none");
 			$('#select_matiere').removeAttr('disabled');
 			$("#select_matiere").css("display", "none");
 			$('#select_matiere').children('option:not(:first)').remove();
-			$('#select_matiere option:contains("Matiere")').prop('selected',true);
+			$('#select_matiere option:contains("Matiere")').prop('selected', true);
 
-			$('#label_periode').css("display","none");
-			$('#select_periode').css("display","none");
+			$('#label_periode').css("display", "none");
+			$('#select_periode').css("display", "none");
 			$('#select_periode').children('option:not(:first)').remove();
 
-			$(this).css("display","none");
+			$(this).css("display", "none");
 			$('#select_module').removeAttr('disabled');
-			$('#select_module option:contains("Module")').prop('selected',true);
+			$('#select_module option:contains("Module")').prop('selected', true);
 		});
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>
