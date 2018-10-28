@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./vue/styleCSS/style.css"/>
     <link rel="stylesheet" href="./vue/styleCSS/bootstrap.css"/>
     <link rel="stylesheet" href="./vue/styleCSS/normalize.css"/>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
 
 <body>
