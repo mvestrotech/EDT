@@ -1,20 +1,20 @@
-﻿<?php 
-
-//hypothèse 2 paramètres d'entrée, controle et action, avec l'url de index.php
-// exmple : index.php?controle=c1&action=a12
-
-if (isset($_GET['controle']) & isset($_GET['action'])) {
- 	$controle = $_GET['controle'];
-	$action= $_GET['action'];
+﻿<?php
+	if(isset($_GET['controle']) & isset($_GET['action']) & isset($_GET['id'])){
+		$controle = $_GET['controle'];
+		require ('./controller/' . $controle . '.php');
+		$cont = new $controle();
+		$action= $_GET['action'];
+		$id=$_GET['id'];
+		$cont->{$action}($id); 
 	}
-else { //absence de paramètres : prévoir des valeurs par défaut
-	$controle = "c1";
-	$action= "a11";
+	elseif (isset($_GET['controle']) & isset($_GET['action'])) {
+		$controle = $_GET['controle'];
+		require ('./controller/' . $controle . '.php');
+		$cont = new $controle();
+		$action= $_GET['action'];
+		$cont->{$action}(); 
 	}
-	
-//inclure le fichier php de contrôle 
-//et lancer la fonction-action issue de ce fichier.
-	require ('./controle/' . $controle . '.php');
-	$action (); 
-
+	else {
+	require("vue/layout/edt.html");
+	}
 ?>
