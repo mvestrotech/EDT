@@ -26,6 +26,12 @@ class Matiere extends connectDb{
         $matiere->execute();
         return $matiere;
     }
+    public static function getMatiereByName($name){
+        $db = connectDb::dbConnect();
+        $matiere  = $db->prepare('SELECT * from `matiere` WHERE nom='.$name);
+        $matiere->execute();
+        return $matiere;
+    }
     public static function getMatieresByModule($id){
         $db = connectDb::dbConnect();
         $matieres = $db->prepare('SELECT * FROM `matiere` WHERE id_mod='.$id);

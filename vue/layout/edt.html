@@ -170,7 +170,6 @@
 			id_periode = $('#select_periode').children(":selected").attr("id");
 			$.get(baseurl + "?controle=MatiereController&action=show&id=" + id_matiere, function (data, status) {
 				var item = JSON.parse(data);
-				alert("Heure de la matière "+item.nom+":\n"+"Heure: "+item.nbHeure);
 				/*
 				* Cette partie est assez compliqué j'ai donc mit un fichier .txt pour expliquer mon algorithme.
 				*/
@@ -179,18 +178,18 @@
 				if (id_periode == 1) {
 					//Si la div est vide mais existe
 					if ($('#' + id_module + '-' + id_periode).is(':empty')) {
-						$('#' + id_module + '-' + id_periode).html(item.nom);
+						$('#' + id_module + '-' + id_periode).html('<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div existe mais n'est pas vide, on doit donc concaténer le texte
 					else if ($('#' + id_module + '-' + id_periode).length) {
 						var old_text = $('#' + id_module + '-' + id_periode).html();
-						$('#' + id_module + '-' + id_periode).html(old_text + " | " + item.nom);
+						$('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div n'existe pas, on doit donc la créer				
 					else {
-						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + item.nom + '</div>');
+						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' +'<a id="matiere">'+item.label + '</a></div>');
 						calculateTotal(id_periode,item.nbHeure);
 					}
 				}
@@ -203,18 +202,18 @@
 					}
 					//Si la div est vide mais existe
 					if ($('#' + id_module + '-' + i).is(':empty')) {
-						$('#' + id_module + '-' + id_periode).html(item.nom);
+						$('#' + id_module + '-' + id_periode).html('<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div existe mais n'est pas vide on doit donc concaténer le texte
 					else if ($('#' + id_module + '-' + id_periode).length) {
 						var old_text = $('#' + id_module + '-' + id_periode).html();
-						$('#' + id_module + '-' + id_periode).html(old_text + " | " + item.nom);
+						$('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div n'existe pas on doit donc créer la div
 					else {
-						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + item.nom + '</div>');
+						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere">'+item.label +'</p>'+ '</div>');
 						calculateTotal(id_periode,item.nbHeure);
 					}
 				}
@@ -222,7 +221,6 @@
 			$(this).css("display", "none");
 			$("#reload_page").css("display", "block");
 		});
-
 		/*
 		* Handler du bouton d'ajout d'une nouvelle matière
 		*/

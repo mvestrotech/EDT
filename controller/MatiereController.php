@@ -34,8 +34,8 @@ class MatiereController{
       'module' => utf8_encode($matiere['id_mod']),
       'periode' => utf8_encode($matiere['id_period']),
       'nom' => utf8_encode($matiere['nom']),
-      'prenom' => utf8_encode($matiere['label']),
-      'nb Heure' => utf8_encode($matiere['nbH']),
+      'label' => utf8_encode($matiere['label']),
+      'nbHeure' => utf8_encode($matiere['nbH']),
       'couleur' => utf8_encode($matiere['couleur']),
       'theme' => utf8_encode($matiere['themes']),
       'type' => utf8_encode($matiere['typeEns']),
@@ -53,7 +53,25 @@ class MatiereController{
       'module' => utf8_encode($matiere['id_mod']),
       'periode' => utf8_encode($matiere['id_period']),
       'nom' => utf8_encode($matiere['nom']),
-      'prenom' => utf8_encode($matiere['label']),
+      'label' => utf8_encode($matiere['label']),
+      'nbHeure' => utf8_encode($matiere['nbH']),
+      'couleur' => utf8_encode($matiere['couleur']),
+      'theme' => utf8_encode($matiere['themes']),
+      'type' => utf8_encode($matiere['typeEns']),
+      ); 
+    }
+    echo  json_encode($obj_json);
+  }
+  
+  public function showByName($name){
+    $matieres = Matiere::getMatiereByName($name);
+    while ($matiere = $matieres -> fetch()){
+      $obj_json = array('id' => utf8_encode($matiere['id_mat']),
+      'ue' => utf8_encode($matiere['id_ue']),
+      'module' => utf8_encode($matiere['id_mod']),
+      'periode' => utf8_encode($matiere['id_period']),
+      'nom' => utf8_encode($matiere['nom']),
+      'label' => utf8_encode($matiere['label']),
       'nbHeure' => utf8_encode($matiere['nbH']),
       'couleur' => utf8_encode($matiere['couleur']),
       'theme' => utf8_encode($matiere['themes']),
