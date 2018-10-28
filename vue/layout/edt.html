@@ -55,11 +55,11 @@
 							<p class="basG">modules</p>
 						</div>
 					</div>
-					<div class="row cptV">
-						<div class="cellules silver">
-							<p><b>total/période</b></p>
+					<div class="row cptV" id="total_periode">
+						<div class="cellules silver" id="titre_total_periode">
+							<p><b>Total par Période</b></p>
 						</div>
-						<div class="cellules total silver">
+						<!-- <div class="cellules total silver">
 							<p class='tot'>-</p>
 						</div>
 						<div class="cellules total silver">
@@ -79,7 +79,7 @@
 						</div>
 						<div class="cellules total silver">
 							<p></p>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -114,6 +114,7 @@
 				for (var o in object) {
 					var item = object[o];
 					$('<div class="cellules titre lime" id=' + cpt + '>' + item.periode + ' (' + item.diff + ' sem)</div>').insertAfter($('#titre'))
+					$('<div class="cellules total silver text-center" id=tot-'+cpt+'>0</div>').insertAfter($('#titre_total_periode'))
 					cpt = cpt - 1;
 				}
 			})
@@ -126,9 +127,6 @@
 			var id = $(this).children(":selected").attr("id");
 			$.get(baseurl + "?controle=MatiereController&action=showByModule&id=" + id, function (data, status) {
 				var object = JSON.parse(data);
-				// $('#select_form').append('<label for="sel1">Select Matiere:</label>'+
-				// 							'<select class="form-control" id="select_matiere">'+
-				// 							'</select>')	
 				$('#label_matiere').css("display", "block");
 				$()
 				$("#select_matiere").css("display", "block");
@@ -172,7 +170,7 @@
 			id_periode = $('#select_periode').children(":selected").attr("id");
 			$.get(baseurl + "?controle=MatiereController&action=show&id=" + id_matiere, function (data, status) {
 				var item = JSON.parse(data);
-
+				alert("Heure de la matière "+item.nom+":\n"+"Heure: "+item.nbHeure);
 				/*
 				* Cette partie est assez compliqué j'ai donc mit un fichier .txt pour expliquer mon algorithme.
 				*/
@@ -182,36 +180,42 @@
 					//Si la div est vide mais existe
 					if ($('#' + id_module + '-' + id_periode).is(':empty')) {
 						$('#' + id_module + '-' + id_periode).html(item.nom);
+						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div existe mais n'est pas vide, on doit donc concaténer le texte
 					else if ($('#' + id_module + '-' + id_periode).length) {
 						var old_text = $('#' + id_module + '-' + id_periode).html();
 						$('#' + id_module + '-' + id_periode).html(old_text + " | " + item.nom);
+						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div n'existe pas, on doit donc la créer				
 					else {
 						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + item.nom + '</div>');
+						calculateTotal(id_periode,item.nbHeure);
 					}
 				}
 				else {
 					for (var i = 1; i < id_periode; i++) {
+						//Si la div n'existe pas on la créer 
 						if ($('#' + id_module + '-' + i).length == 0) {
-							//Si la div n'existe pas on la créer 
 							$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + i + '></div>');
 						}
 					}
 					//Si la div est vide mais existe
 					if ($('#' + id_module + '-' + i).is(':empty')) {
 						$('#' + id_module + '-' + id_periode).html(item.nom);
+						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div existe mais n'est pas vide on doit donc concaténer le texte
 					else if ($('#' + id_module + '-' + id_periode).length) {
 						var old_text = $('#' + id_module + '-' + id_periode).html();
 						$('#' + id_module + '-' + id_periode).html(old_text + " | " + item.nom);
+						calculateTotal(id_periode,item.nbHeure);
 					}
 					//La div n'existe pas on doit donc créer la div
 					else {
 						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + item.nom + '</div>');
+						calculateTotal(id_periode,item.nbHeure);
 					}
 				}
 			});
@@ -237,6 +241,18 @@
 			$('#select_module').removeAttr('disabled');
 			$('#select_module option:contains("Module")').prop('selected', true);
 		});
+		
+		/*
+		* Fonction permettant de mettre à jour le contenu du total correspondant à la période sélectionné
+		*/
+		function calculateTotal(id_periode, nbHeure){
+			var old_total  = $('#tot-'+id_periode).html();
+			var old_total_int = parseInt(old_total);
+			nbHeure = parseInt(nbHeure);
+			var new_total = old_total_int + nbHeure;
+			$('#tot'+id_periode).empty();
+			$('#tot-'+id_periode).html(new_total);
+		}
 	</script>
 </body>
 

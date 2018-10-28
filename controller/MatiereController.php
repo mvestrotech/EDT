@@ -54,7 +54,7 @@ class MatiereController{
       'periode' => utf8_encode($matiere['id_period']),
       'nom' => utf8_encode($matiere['nom']),
       'prenom' => utf8_encode($matiere['label']),
-      'nb Heure' => utf8_encode($matiere['nbH']),
+      'nbHeure' => utf8_encode($matiere['nbH']),
       'couleur' => utf8_encode($matiere['couleur']),
       'theme' => utf8_encode($matiere['themes']),
       'type' => utf8_encode($matiere['typeEns']),
