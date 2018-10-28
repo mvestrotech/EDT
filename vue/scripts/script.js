@@ -1,67 +1,3 @@
-<!doctype html>
-<html lang="fr">
-<!-- HEADER -->
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Application - Emploi du temps</title>
-	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/style.css" />
-	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="./vue/styleCSS/normalize.css" />
-	<script src="./vue/scripts/jquery-3.3.1.min.js"></script>
-</head>
-<!-- BODY -->
-
-<body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<h1 class="text-center">Grille d'EDT modules/périodes</h1>
-				<div class="row">
-					<div class="zone col-md-6" id="btns">
-						<button class="btn btn-info" id="start">Générer l'EDT</button>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group row">
-							<div class="col-md-12" id="select_form">
-								<label for="sel1">Select Module:</label>
-								<select class="form-control" id="select_module">
-									<option>Module</option>
-								</select>
-								<label for="sel1" style="display:none;" id="label_matiere">Select Matiere:</label>
-								<select class="form-control" id="select_matiere" style="display:none;">
-									<option>Matiere</option>
-								</select>
-								<label for="sel1" style="display:none;" id="label_periode">Select Période:</label>
-								<select class="form-control" id="select_periode" style="display:none;">
-									<option>Période</option>
-								</select>
-								<button class="btn btn-success" id="validate" style="display:none;">Valider</button>
-								<button class="btn btn-info" id="reload_page" style="display:none;">Ajouter une nouvelle matière</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="zone" id="edt">
-					<div class="row" id="H">
-						<div class="cellules titre silver" id="titre">
-							<p class="barre"></p>
-							<p class="hautD">période</p>
-							<p class="basG">modules</p>
-						</div>
-					</div>
-					<div class="row cptV" id="total_periode">
-						<div class="cellules silver" id="titre_total_periode">
-							<p><b>Total par Période</b></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script>
 		var baseurl = window.location.origin + window.location.pathname;
 		if (baseurl.charAt(baseurl.length - 1) == "/") {
 			baseurl = baseurl.slice(0, -1);
@@ -139,7 +75,6 @@
 					$('#select_periode').append('<option id=' + item.id + '>' + item.periode + '(' + item.diff + 'sem)</option>');
 				}
 				$('#select_matiere').prop('disabled', 'disabled');
-				$('#select_periode').removeAttr('disabled');
 			});
 		});
 
@@ -147,9 +82,7 @@
 		* Handler du select periode
 		*/
 		$('#select_periode').change(function () {
-			$('#select_periode').prop('disabled', 'disabled');
 			$("#validate").css("display", "block");
-			
 		});
 		/*
 		* Handler sur bouton de validation
@@ -171,6 +104,9 @@
 						$('#' + id_module + '-' + id_periode).html('<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 						calculateTotalM(id_module,item.nbHeure);
+						id_div = '#'+id_module+'-'+id_periode;
+						id_p = '#matiere'
+						getInfo(id_div);
 					}
 					//La div existe mais n'est pas vide, on doit donc concaténer le texte
 					else if ($('#' + id_module + '-' + id_periode).length) {
@@ -178,12 +114,18 @@
 						$('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 						calculateTotalM(id_module,item.nbHeure);
+						id_div = '#'+id_module+'-'+id_periode;
+						id_p = '#matiere'
+						getInfo(id_div);
 					}
 					//La div n'existe pas, on doit donc la créer				
 					else {
 						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' +'<p id="matiere">'+item.label + '</p></div>');
 						calculateTotal(id_periode,item.nbHeure);
 						calculateTotalM(id_module,item.nbHeure);
+						id_div = '#'+id_module+'-'+id_periode;
+						id_p = '#matiere'
+						getInfo(id_div);
 					}
 				}
 				else {
@@ -198,6 +140,9 @@
 						$('#' + id_module + '-' + id_periode).html('<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 						calculateTotalM(id_module,item.nbHeure);
+						id_div = '#'+id_module+'-'+id_periode;
+						id_p = '#matiere'
+						getInfo(id_div);
 					}
 					//La div existe mais n'est pas vide on doit donc concaténer le texte
 					else if ($('#' + id_module + '-' + id_periode).length) {
@@ -205,12 +150,18 @@
 						$('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere">'+item.label+'</p>');
 						calculateTotal(id_periode,item.nbHeure);
 						calculateTotalM(id_module,item.nbHeure);
+						id_div = '#'+id_module+'-'+id_periode;
+						id_p = '#matiere'
+						getInfo(id_div);
 					}
 					//La div n'existe pas on doit donc créer la div
 					else {
 						$('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere">'+item.label +'</p>'+ '</div>');
 						calculateTotal(id_periode,item.nbHeure);
 						calculateTotalM(id_module,item.nbHeure);
+						id_div = '#'+id_module+'-'+id_periode;
+						id_p = '#matiere'
+						getInfo(id_div);
 					}
 				}
 			});
@@ -230,7 +181,7 @@
 			$('#label_periode').css("display", "none");
 			$('#select_periode').css("display", "none");
 			$('#select_periode').children('option:not(:first)').remove();
-			
+
 			$(this).css("display", "none");
 			$('#select_module').removeAttr('disabled');
 			$('#select_module option:contains("Module")').prop('selected', true);
@@ -267,7 +218,3 @@
 				// });
 			})
 		}
-	</script>
-</body>
-
-</html>

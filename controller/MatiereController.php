@@ -62,9 +62,9 @@ class MatiereController{
     }
     echo  json_encode($obj_json);
   }
-  
-  public function showByName($name){
-    $matieres = Matiere::getMatiereByName($name);
+
+  public function showByLabel($label){
+    $matieres = Matiere::getMatiereByLabel($label);
     while ($matiere = $matieres -> fetch()){
       $obj_json = array('id' => utf8_encode($matiere['id_mat']),
       'ue' => utf8_encode($matiere['id_ue']),

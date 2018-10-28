@@ -26,9 +26,9 @@ class Matiere extends connectDb{
         $matiere->execute();
         return $matiere;
     }
-    public static function getMatiereByName($name){
+    public static function getMatiereByLabel($label){
         $db = connectDb::dbConnect();
-        $matiere  = $db->prepare('SELECT * from `matiere` WHERE nom='.$name);
+        $matiere  = $db->prepare('SELECT * from `matiere` WHERE label='.$label);
         $matiere->execute();
         return $matiere;
     }
