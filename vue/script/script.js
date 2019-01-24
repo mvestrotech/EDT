@@ -106,7 +106,7 @@ $(document).ready(function() {
             if (id_periode == 1) {
                 //Si la div est vide mais existe
                 if ($('#' + id_module + '-' + id_periode).is(':empty')) {
-                    $('#' + id_module + '-' + id_periode).html('<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
+                    $('#' + id_module + '-' + id_periode).html('<p id="matiere-'+item.id+'" class="para" style="color:'+item.couleur+';">' + item.label + '</p>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
@@ -117,14 +117,14 @@ $(document).ready(function() {
                         alert('Vous ne pouvez ajouter 2 fois la même matière pour une même période');
                         $("#reload_page").click();
                     } else {
-                        $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
+                        $('#' + id_module + '-' + id_periode).html(old_text + '<p class="para" id="matiere-'+item.id+'" style="color:'+item.couleur+';">' + item.label + '</p>');
                         calculateTotal(id_periode, item.nbHeure);
                         calculateTotalM(id_module, item.nbHeure);
                     }
                 }
                 //La div n'existe pas, on doit donc la créer				
                 else {
-                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p></div>');
+                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere-'+item.id+'" style="color:'+item.couleur+';">' + item.label + '</p></div>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
@@ -137,7 +137,7 @@ $(document).ready(function() {
                 }
                 //Si la div est vide mais existe
                 if ($('#' + id_module + '-' + i).is(':empty')) {
-                    $('#' + id_module + '-' + id_periode).html('<p id="matiere" style="color:'+item.couleur+';">'  + item.label + '</p>');
+                    $('#' + id_module + '-' + id_periode).html('<p class="para" id="matiere-'+item.id+'" style="color:'+item.couleur+';">'  + item.label + '</p>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
@@ -148,14 +148,14 @@ $(document).ready(function() {
                         alert('Vous ne pouvez ajouter 2 fois la même matière pour une même période');
                         $("#reload_page").click();
                     } else {
-                        $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
+                        $('#' + id_module + '-' + id_periode).html(old_text + '<p class="para" id="matiere-'+item.id+'" style="color:'+item.couleur+';">' + item.label + '</p>');
                         calculateTotal(id_periode, item.nbHeure);
                         calculateTotalM(id_module, item.nbHeure);
                     }
                 }
                 //La div n'existe pas on doit donc créer la div
                 else {
-                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>' + '</div>');
+                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere-'+item.id+'" style="color:'+item.couleur+';">' + item.label + '</p>' + '</div>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
@@ -181,6 +181,9 @@ $(document).ready(function() {
         $(this).css("display", "none");
         $('#select_module').removeAttr('disabled');
         $('#select_module option:contains("Module")').prop('selected', true);
+    });
+    $('#edt').on('click', '.para', function() {
+        $(this).remove();
     });
     /*
      * Fonction permettant de mettre à jour le contenu du total correspondant à la période sélectionné
