@@ -87,6 +87,7 @@ $(document).ready(function() {
         $("#validate").css("display", "block");
 
     });
+
     /*
      * Handler sur bouton de validation
      */
@@ -96,6 +97,7 @@ $(document).ready(function() {
         id_periode = $('#select_periode').children(":selected").attr("id");
         $.get(baseurl + "?controle=MatiereController&action=show&id=" + id_matiere, function(data, status) {
             var item = JSON.parse(data);
+
             /*
              * Cette partie est assez compliqué j'ai donc mit un fichier .txt pour expliquer mon algorithme.
              */
@@ -104,20 +106,20 @@ $(document).ready(function() {
             if (id_periode == 1) {
                 //Si la div est vide mais existe
                 if ($('#' + id_module + '-' + id_periode).is(':empty')) {
-                    $('#' + id_module + '-' + id_periode).html('<p id="matiere">' + item.label + '</p>');
+                    $('#' + id_module + '-' + id_periode).html('<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
                 //La div existe mais n'est pas vide, on doit donc concaténer le texte
                 else if ($('#' + id_module + '-' + id_periode).length) {
                     var old_text = $('#' + id_module + '-' + id_periode).html();
-                    $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere">' + item.label + '</p>');
+                    $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
                 //La div n'existe pas, on doit donc la créer				
                 else {
-                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere">' + item.label + '</p></div>');
+                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p></div>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
@@ -130,20 +132,20 @@ $(document).ready(function() {
                 }
                 //Si la div est vide mais existe
                 if ($('#' + id_module + '-' + i).is(':empty')) {
-                    $('#' + id_module + '-' + id_periode).html('<p id="matiere">' + item.label + '</p>');
+                    $('#' + id_module + '-' + id_periode).html('<p id="matiere" style="color:'+item.couleur+';">'  + item.label + '</p>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
                 //La div existe mais n'est pas vide on doit donc concaténer le texte
                 else if ($('#' + id_module + '-' + id_periode).length) {
                     var old_text = $('#' + id_module + '-' + id_periode).html();
-                    $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere">' + item.label + '</p>');
+                    $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
                 //La div n'existe pas on doit donc créer la div
                 else {
-                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere">' + item.label + '</p>' + '</div>');
+                    $('#row' + id_module).append('<div class="cellules titre droppable silver" id=' + id_module + '-' + id_periode + '>' + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>' + '</div>');
                     calculateTotal(id_periode, item.nbHeure);
                     calculateTotalM(id_module, item.nbHeure);
                 }
