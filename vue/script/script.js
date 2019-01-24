@@ -113,9 +113,14 @@ $(document).ready(function() {
                 //La div existe mais n'est pas vide, on doit donc concaténer le texte
                 else if ($('#' + id_module + '-' + id_periode).length) {
                     var old_text = $('#' + id_module + '-' + id_periode).html();
-                    $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
-                    calculateTotal(id_periode, item.nbHeure);
-                    calculateTotalM(id_module, item.nbHeure);
+                    if (old_text.includes(item.label)){
+                        alert('Vous ne pouvez ajouter 2 fois la même matière pour une même période');
+                        $("#reload_page").click();
+                    } else {
+                        $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
+                        calculateTotal(id_periode, item.nbHeure);
+                        calculateTotalM(id_module, item.nbHeure);
+                    }
                 }
                 //La div n'existe pas, on doit donc la créer				
                 else {
@@ -139,9 +144,14 @@ $(document).ready(function() {
                 //La div existe mais n'est pas vide on doit donc concaténer le texte
                 else if ($('#' + id_module + '-' + id_periode).length) {
                     var old_text = $('#' + id_module + '-' + id_periode).html();
-                    $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
-                    calculateTotal(id_periode, item.nbHeure);
-                    calculateTotalM(id_module, item.nbHeure);
+                    if (old_text.includes(item.label)){
+                        alert('Vous ne pouvez ajouter 2 fois la même matière pour une même période');
+                        $("#reload_page").click();
+                    } else {
+                        $('#' + id_module + '-' + id_periode).html(old_text + '<p id="matiere" style="color:'+item.couleur+';">' + item.label + '</p>');
+                        calculateTotal(id_periode, item.nbHeure);
+                        calculateTotalM(id_module, item.nbHeure);
+                    }
                 }
                 //La div n'existe pas on doit donc créer la div
                 else {
